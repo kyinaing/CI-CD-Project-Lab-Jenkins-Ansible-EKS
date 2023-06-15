@@ -353,11 +353,26 @@ Build Goals and Options to clean install
 
 Finnally, we will configure post-build actions.
 
-![image](https://github.com/kyinaing/CI-CD-Project-Jenkins-Ansible-Docker-01/assets/12751896/a75a50e9-5bcd-42c9-bfe4-ce0275434da8)
+![image](https://github.com/kyinaing/CI-CD-Project-Lab-Jenkins-Ansible-EKS/assets/12751896/4283258f-73c9-41a1-b71e-3ddfa2708361)
+
 
 For the initial run, we need to manually execute the build now command and it does not require any subsequent commit changes from Git because we configure build trigger.
 
-![image](https://github.com/kyinaing/CI-CD-Project-Jenkins-Ansible-Docker-01/assets/12751896/9ee6c6cf-daab-40b0-8471-67300d67e28b)
+![image](https://github.com/kyinaing/CI-CD-Project-Lab-Jenkins-Ansible-EKS/assets/12751896/0fd9a5c9-549a-4daa-98c2-dbe3e2472131)
+
+Verify the kubernetes deployment
+
+```
+[ansadmin@EKS-Bootstrap-server ~]$ kubectl get deploy -o wide
+NAME              READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS   IMAGES            SELECTOR
+kyinaing-regapp   2/2     2            2           81s   regapp       kyinaing/regapp   app=regapp
+[ansadmin@EKS-Bootstrap-server ~]$ kubectl get svc -o wide
+NAME               TYPE           CLUSTER-IP      EXTERNAL-IP
+               PORT(S)          AGE   SELECTOR
+kubernetes         ClusterIP      10.100.0.1      <none>
+               443/TCP          74m   <none>
+kyinaing-service   LoadBalancer   10.100.167.17   a3d01c5b8a07a4e29997b3414d6d2590-1153047023.ap-southeast-2.elb.amazonaws.com   8080:31645/TCP   93s   app=regapp
+```
 
 
 
